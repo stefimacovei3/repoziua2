@@ -18,3 +18,5 @@ jobs:
     
     - name: Print environment
       run: echo " Running on ${{ github.event.inputs.environment }} "
+    - name: Print secret
+      run: echo " Secretul este ${{ secret.NU_SPUNE }} "
