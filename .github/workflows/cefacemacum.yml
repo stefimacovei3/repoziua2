@@ -11,12 +11,30 @@ on:
        - qa
        - staging
 
+ 
 jobs:
-  test:
+  if: github.event_name == 'workflow_dispatch'
+  dev:
     runs-on: self-hosted
     steps:
-    
-    - name: Print environment
-      run: echo " Running on ${{ github.event.inputs.environment }} "
-    - name: Print secret
-      run: echo " Secretul este ${{ inputs.environment.secret.NU_SPUNE }} "
+      - name: "Install dependencies"
+        run: |
+          echo "Installing dependencies..."
+          # Add commands to install dependencies here
+ 
+  staging:
+    runs-on: self-hosted
+    needs: dev
+    steps:
+      - name: "Run tests"
+        run: |
+          echo "Running tests..."
+          # Add commands to run tests here
+ 
+  production:
+    runs-on: self-hosted
+    needs: staging
+    steps:
+      - name: "Deploy application"
+        run: |
+          echo "Deploying application..."
