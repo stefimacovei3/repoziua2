@@ -1,6 +1,4 @@
 name: Run Python Tests
-
-
 on: 
   workflow_dispatch:
    inputs:
@@ -11,10 +9,8 @@ on:
        - dev
        - qa
        - staging
-
- 
+       
 jobs:
-  
   dev:
     runs-on: self-hosted
     if: github.event_name == 'workflow_dispatch'
